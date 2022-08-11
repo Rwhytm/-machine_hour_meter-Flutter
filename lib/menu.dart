@@ -11,8 +11,10 @@ class _MenuState extends State<Menu> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        child: Text('Menu'),
+      body: SafeArea(
+        child: Container(
+          child: Text('Menu'),
+        ),
       ),
     );
   }

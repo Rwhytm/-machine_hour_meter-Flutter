@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "520261004439",
+    "firebase_url": "https://yang-terbaru-default-rtdb.firebaseio.com",
+    "project_id": "yang-terbaru",
+    "storage_bucket": "yang-terbaru.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:520261004439:android:5a60474294cfece6fecdd2",
+        "android_client_info": {
+          "package_name": "com.techid.machine_hour_meter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "520261004439-hbs0fjc185jgas9dg2obfj89toit9kng.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA8iC0D_ecWOx6gCrHI2ucKiC5aBhSZcV8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "520261004439-hbs0fjc185jgas9dg2obfj89toit9kng.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
