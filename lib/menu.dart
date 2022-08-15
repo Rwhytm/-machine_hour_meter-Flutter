@@ -127,7 +127,7 @@ class _MenuState extends State<Menu> {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       Text(
-                        'Daya Listrik : $isRunning',
+                        'Daya Listrik : ',
                         style: GoogleFonts.poppins(
                           fontSize: 15,
                           fontWeight: FontWeight.w600,
@@ -189,7 +189,7 @@ class _MenuState extends State<Menu> {
                           height: 20,
                         ),
                         Text(
-                          'Hours $isDone',
+                          'Hours',
                           style: GoogleFonts.poppins(
                             fontWeight: FontWeight.w600,
                             fontSize: 20,
