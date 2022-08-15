@@ -24,6 +24,7 @@ class _MenuState extends State<Menu> {
               if (snapshot.hasData) {
                 return Text(snapshot.data);
               }
+              return Text(snapshot.data);
             },
           ),
         ),
