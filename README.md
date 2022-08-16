@@ -1,16 +1,31 @@
-# machine_hour_meter
+# Aplikasi Machine Meter Hours
+Machine Meter Hours adalah sebuah aplikasi yang berguna untuk menghitung waktu kinerja mesin ketika mencapai arus listrik > 100 mA, aplikasi ini digunakan untuk penelitian seorang mahasiswa teknik elektro.
 
-A new Flutter project.
 
-## Getting Started
+<br>
+Teknologi yang digunakan
+<br>
+<br>
+<a href="https://dart.dev/">
+    <img src="https://skillicons.dev/icons?i=dart" width=50"/>
+  </a>
+  
+  <a href="https://dart.dev/">
+    <img src="https://skillicons.dev/icons?i=flutter" width=50"/>
+  </a>
+  
+  <a href="https://dart.dev/">
+    <img src="https://skillicons.dev/icons?i=firebase" width=50"/>
+  </a>
+  
+<br>
+<br>
+<br>
+<br>
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
+Berikut UI dari aplikasi ini : 
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+<div align = center>
+Belum Selesai
+</div>
