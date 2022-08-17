@@ -45,7 +45,7 @@ class _MenuState extends State<Menu> {
   void stopTimer({bool resets = true}) {}
 
   void _activeListener() {
-    referencesData.child('data/arus listrik').onValue.listen((event) {
+    referencesData.child('arus listrik').onValue.listen((event) {
       final Object? arus = event.snapshot.value;
       setState(() {
         _textarus = arus.toString();
@@ -53,7 +53,7 @@ class _MenuState extends State<Menu> {
       });
     });
 
-    referencesData.child('data/daya listrik').onValue.listen((event) {
+    referencesData.child('daya listrik').onValue.listen((event) {
       final Object? daya = event.snapshot.value;
       setState(() {
         _textdaya = daya.toString();
