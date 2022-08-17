@@ -68,6 +68,7 @@ class _MenuState extends State<Menu> {
       setState(() {
         index = 1;
         isRunning = true;
+        isDone = false;
       });
       startTimer();
     }
@@ -75,6 +76,7 @@ class _MenuState extends State<Menu> {
     if (arusL < 101 && isRunning == true) {
       setState(() {
         isDone = true;
+        isRunning = false;
       });
       timer?.cancel();
     }
