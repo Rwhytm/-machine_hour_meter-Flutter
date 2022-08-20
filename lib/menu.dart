@@ -1,3 +1,5 @@
+// ignore_for_file: must_call_super, prefer_const_constructors
+
 import 'dart:async';
 
 import 'package:firebase_database/firebase_database.dart';
@@ -5,7 +7,7 @@ import "package:flutter/material.dart";
 import 'package:google_fonts/google_fonts.dart';
 
 class Menu extends StatefulWidget {
-  Menu({Key? key}) : super(key: key);
+  const Menu({Key? key}) : super(key: key);
 
   @override
   State<Menu> createState() => _MenuState();
