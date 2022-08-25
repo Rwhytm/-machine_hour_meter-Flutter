@@ -27,5 +27,5 @@ Teknologi yang digunakan
 Berikut UI dari aplikasi ini : 
 
 <div align = center>
-Belum Selesai
+<img src="https://github.com/Rwhytm/machine_hour_meter-flutter/blob/main/Screenshot_1660978951.png" width="230">
 </div>
