@@ -99,8 +99,8 @@ class _MenuState extends State<Menu> {
                     borderRadius: BorderRadius.circular(10),
                     color: Colors.white,
                   ),
-                  height: size.height / 10,
-                  child: Row(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       Text(
@@ -126,8 +126,8 @@ class _MenuState extends State<Menu> {
                     borderRadius: BorderRadius.circular(10),
                     color: Colors.white,
                   ),
-                  height: size.height / 10,
-                  child: Row(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       Text(
