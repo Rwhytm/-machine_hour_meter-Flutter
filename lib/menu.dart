@@ -5,6 +5,8 @@ import 'dart:async';
 import 'package:firebase_database/firebase_database.dart';
 import "package:flutter/material.dart";
 import 'package:google_fonts/google_fonts.dart';
+import 'package:machine_hour_meter/common/services.dart';
+import 'package:machine_hour_meter/histori.dart';
 
 class Menu extends StatefulWidget {
   const Menu({Key? key}) : super(key: key);
@@ -14,6 +16,7 @@ class Menu extends StatefulWidget {
 }
 
 class _MenuState extends State<Menu> {
+  //inisialisasi variabel
   Duration duration = const Duration();
   int index = 0;
   Timer? timer;
@@ -24,11 +27,13 @@ class _MenuState extends State<Menu> {
   String _textdaya = '';
   final referencesData = FirebaseDatabase.instance.ref();
 
+  //inisialisasi data dari database
   @override
   void initState() {
     _activeListener();
   }
 
+  //fungsi manambah satu detik untuk timer
   void addTime() {
     const addSeconds = 1;
 
@@ -38,15 +43,17 @@ class _MenuState extends State<Menu> {
     });
   }
 
-  void reset() {}
-
+  //memulai timer
   void startTimer() {
     timer = Timer.periodic(const Duration(seconds: 1), ((_) => addTime()));
   }
 
+//fungsi untuk memberhentikan waktu
   void stopTimer({bool resets = true}) {}
 
+//memanggil data arus dan daya dari firebase
   void _activeListener() {
+    //memanggil data arus
     referencesData.child('arus listrik').onValue.listen((event) {
       final Object? arus = event.snapshot.value;
       setState(() {
@@ -55,6 +62,7 @@ class _MenuState extends State<Menu> {
       });
     });
 
+    // memanggil data daya
     referencesData.child('daya listrik').onValue.listen((event) {
       final Object? daya = event.snapshot.value;
       setState(() {
@@ -65,7 +73,7 @@ class _MenuState extends State<Menu> {
 
   @override
   Widget build(BuildContext context) {
-    // bool isRunning = timer == null ? false : timer!.isActive;
+    //mulai timer ketika arus > 100
     if (arusL > 100 && isRunning == false) {
       setState(() {
         index = 1;
@@ -75,6 +83,7 @@ class _MenuState extends State<Menu> {
       startTimer();
     }
 
+    //berhenti ketika arus lebih kecil dari 101
     if (arusL < 101 && isRunning == true) {
       setState(() {
         isDone = true;
@@ -84,7 +93,27 @@ class _MenuState extends State<Menu> {
     }
     Size size = MediaQuery.of(context).size;
 
+    //android
     return Scaffold(
+      appBar: AppBar(
+        actions: [
+          IconButton(
+            icon: Icon(
+              Icons.list,
+              size: 35,
+            ),
+            onPressed: () async {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => Histori(),
+                ),
+              );
+              // await AuthServices.timerSave(
+              //     "${duration.inHours} : ${duration.inMinutes} : ${duration.inSeconds}");
+            },
+          ),
+        ],
+      ),
       backgroundColor: Colors.blue,
       body: SafeArea(
         child: Column(
@@ -272,7 +301,9 @@ class _MenuState extends State<Menu> {
             ),
             isDone == true
                 ? GestureDetector(
-                    onTap: () {
+                    onTap: () async {
+                      await AuthServices.timerSave(
+                          "${duration.inHours} Jam : ${duration.inMinutes} Menit : ${duration.inSeconds} Detik");
                       setState(() {
                         index = 0;
                         isRunning = false;
