@@ -1,5 +1,5 @@
 # Aplikasi Machine Meter Hours
-Machine Meter Hours adalah sebuah aplikasi yang berguna untuk menghitung waktu kinerja mesin ketika mencapai arus listrik > 100 mA, aplikasi ini digunakan untuk penelitian seorang mahasiswa teknik elektro.
+
 
 
 <br>
