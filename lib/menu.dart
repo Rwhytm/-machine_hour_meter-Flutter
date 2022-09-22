@@ -81,6 +81,13 @@ class _MenuState extends State<Menu> {
         isDone = false;
       });
       startTimer();
+      AuthServices.pauseTime().then(
+        (value) => ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Timer Berjalan'),
+          ),
+        ),
+      );
     }
 
     //berhenti ketika arus lebih kecil dari 101
@@ -90,6 +97,13 @@ class _MenuState extends State<Menu> {
         isRunning = false;
       });
       timer?.cancel();
+      AuthServices.pauseTime().then(
+        (value) => ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Timer Berhenti'),
+          ),
+        ),
+      );
     }
     Size size = MediaQuery.of(context).size;
 
@@ -303,7 +317,14 @@ class _MenuState extends State<Menu> {
                 ? GestureDetector(
                     onTap: () async {
                       await AuthServices.timerSave(
-                          "${duration.inHours} Jam : ${duration.inMinutes} Menit : ${duration.inSeconds} Detik");
+                              "${duration.inHours} Jam : ${duration.inMinutes} Menit : ${duration.inSeconds} Detik")
+                          .then((value) =>
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text(
+                                      'Derasi Mesin ${duration.inHours} Jam : ${duration.inMinutes} Menit : ${duration.inSeconds} Detik, Berhasil disimpan'),
+                                ),
+                              ));
                       setState(() {
                         index = 0;
                         isRunning = false;

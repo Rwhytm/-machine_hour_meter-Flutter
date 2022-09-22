@@ -1,7 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.techid.machine_hour_meter">
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
    <application
-        android:label="Machine Hour Meter"
+        android:label="Engine Hour Meter"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

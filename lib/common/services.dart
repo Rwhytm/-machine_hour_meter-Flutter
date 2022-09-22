@@ -15,4 +15,10 @@ class AuthServices {
       print(e);
     }
   }
+
+  static Future pauseTime() async {
+    try {} catch (e) {
+      print(e);
+    }
+  }
 }
