@@ -1,6 +1,6 @@
 # Aplikasi Machine Meter Hours
 
-
+aplikasi penghitung jam kerja mesin, pada aplikasi ini kita mendapatkan informasi mengenai waktu kerja dari mesin ketika arus listrik >100 menggunaan timer dan berhenti ketika arus listrik <101. aplikasi ini digunakan sebagai penelitian untuk mahasiswa teknik elektro
 
 <br>
 Teknologi yang digunakan
