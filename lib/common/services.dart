@@ -4,11 +4,15 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class AuthServices {
   static Future timerSave(
-    String timer,
+    int hour,
+    int minutes,
+    int seconds,
   ) async {
     try {
       await FirebaseFirestore.instance.collection('timer').add({
-        "timer": timer,
+        "hour": hour,
+        "minutes": minutes,
+        "seconds": seconds,
         "createdAt": DateTime.now(),
       });
     } catch (e) {

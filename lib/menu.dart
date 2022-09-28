@@ -317,12 +317,14 @@ class _MenuState extends State<Menu> {
                 ? GestureDetector(
                     onTap: () async {
                       await AuthServices.timerSave(
-                              "${duration.inHours} Jam : ${duration.inMinutes} Menit : ${duration.inSeconds} Detik")
+                              duration.inHours,
+                              duration.inMinutes.remainder(60),
+                              duration.inSeconds.remainder(60))
                           .then((value) =>
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
                                   content: Text(
-                                      'Derasi Mesin ${duration.inHours} Jam : ${duration.inMinutes} Menit : ${duration.inSeconds} Detik, Berhasil disimpan'),
+                                      'Derasi Mesin ${duration.inHours} Jam : ${duration.inMinutes.remainder(60)} Menit : ${duration.inSeconds.remainder(60)} Detik, Berhasil disimpan'),
                                 ),
                               ));
                       setState(() {
