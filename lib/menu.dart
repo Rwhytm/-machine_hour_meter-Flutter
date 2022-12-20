@@ -2,6 +2,7 @@
 
 import 'dart:async';
 
+import 'package:duration_picker/duration_picker.dart';
 import 'package:firebase_database/firebase_database.dart';
 import "package:flutter/material.dart";
 import 'package:google_fonts/google_fonts.dart';
@@ -17,6 +18,7 @@ class Menu extends StatefulWidget {
 
 class _MenuState extends State<Menu> {
   //inisialisasi variabel
+  Duration a = Duration.zero;
   Duration duration = const Duration();
   int index = 0;
   Timer? timer;
@@ -110,6 +112,14 @@ class _MenuState extends State<Menu> {
     //android
     return Scaffold(
       appBar: AppBar(
+        // leading: IconButton(
+        //   icon: Icon(
+        //     Icons.timer,
+        //   ),
+        //   onPressed: () {
+        //     _showDialog();
+        //   },
+        // ),
         actions: [
           IconButton(
             icon: Icon(
@@ -354,6 +364,25 @@ class _MenuState extends State<Menu> {
                   )
                 : Text('')
           ],
+        ),
+      ),
+      floatingActionButton: Builder(
+        builder: (BuildContext context) => FloatingActionButton(
+          onPressed: () async {
+            final resultingDuration = await showDurationPicker(
+              context: context,
+              initialTime: const Duration(seconds: 0),
+              baseUnit: BaseUnit.minute,
+            );
+            if (!mounted) return;
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text('Chose duration: $resultingDuration'),
+              ),
+            );
+          },
+          tooltip: 'Popup Duration Picker',
+          child: const Icon(Icons.timer),
         ),
       ),
     );
