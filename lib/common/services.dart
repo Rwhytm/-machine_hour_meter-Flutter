@@ -20,6 +20,19 @@ class AuthServices {
     }
   }
 
+  static Future timerset(
+    int hour,
+  ) async {
+    try {
+      await FirebaseFirestore.instance
+          .collection('timer')
+          .doc("rwp")
+          .set({"hour": hour});
+    } catch (e) {
+      print(e);
+    }
+  }
+
   static Future pauseTime() async {
     try {} catch (e) {
       print(e);

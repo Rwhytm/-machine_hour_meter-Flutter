@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class Histori extends StatefulWidget {
-  const Histori({Key? key}) : super(key: key);
+  double settime;
+  Histori({required this.settime, Key? key}) : super(key: key);
 
   @override
   State<Histori> createState() => _HistoriState();
@@ -17,6 +18,7 @@ class _HistoriState extends State<Histori> {
         descending: true,
       )
       .snapshots();
+
   double totalHour = 0;
   double totalMinutes = 0;
   double totalSeconds = 0;
@@ -63,6 +65,7 @@ class _HistoriState extends State<Histori> {
           totalHour = totalHour + ((totalMinutes - menit) / 60);
           totalMinutes = menit;
         }
+        double sisa = widget.settime - totalHour;
         return Scaffold(
           backgroundColor: Colors.blue,
           appBar: AppBar(
@@ -110,7 +113,7 @@ class _HistoriState extends State<Histori> {
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        'Durasi Kerja Mesin : ',
+                                        'Durasi Kerja Mesin :  ',
                                         style: GoogleFonts.poppins(
                                           fontSize: 18,
                                           fontWeight: FontWeight.w600,
@@ -149,10 +152,11 @@ class _HistoriState extends State<Histori> {
           bottomNavigationBar: Container(
             color: Colors.blue[800],
             width: 30,
-            height: 80,
+            height: 110,
             child: Padding(
               padding: const EdgeInsets.all(15),
-              child: Row(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Text(
                     'Total Kinerja Mesin : \n${totalHour.toInt()} Jam ${totalMinutes.toInt()} Menit ${totalSeconds.toInt()} Detik',
@@ -160,6 +164,14 @@ class _HistoriState extends State<Histori> {
                       fontSize: 17,
                       fontWeight: FontWeight.w600,
                       color: Colors.white,
+                    ),
+                  ),
+                  Text(
+                    'Waktu Perawatan Tinggal ${sisa.round()} jam lagi',
+                    style: GoogleFonts.poppins(
+                      fontSize: 17,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.yellow,
                     ),
                   ),
                 ],

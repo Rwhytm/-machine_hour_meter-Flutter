@@ -2,7 +2,6 @@
 
 import 'dart:async';
 
-import 'package:duration_picker/duration_picker.dart';
 import 'package:firebase_database/firebase_database.dart';
 import "package:flutter/material.dart";
 import 'package:google_fonts/google_fonts.dart';
@@ -26,6 +25,7 @@ class _MenuState extends State<Menu> {
   bool isDone = false;
   String _textarus = '';
   int arusL = 0;
+  int settime = 0;
   String _textdaya = '';
   final referencesData = FirebaseDatabase.instance.ref();
 
@@ -64,6 +64,14 @@ class _MenuState extends State<Menu> {
       });
     });
 
+    referencesData.child("settime").onValue.listen((event) {
+      final Object? a = event.snapshot.value;
+
+      setState(() {
+        settime = int.parse(a.toString());
+      });
+    });
+
     // memanggil data daya
     referencesData.child('daya listrik').onValue.listen((event) {
       final Object? daya = event.snapshot.value;
@@ -73,6 +81,7 @@ class _MenuState extends State<Menu> {
     });
   }
 
+  TextEditingController hourCotroller = TextEditingController(text: "");
   @override
   Widget build(BuildContext context) {
     //mulai timer ketika arus > 100
@@ -129,7 +138,9 @@ class _MenuState extends State<Menu> {
             onPressed: () async {
               Navigator.of(context).push(
                 MaterialPageRoute(
-                  builder: (context) => Histori(),
+                  builder: (context) => Histori(
+                    settime: double.parse(settime.toString()),
+                  ),
                 ),
               );
               // await AuthServices.timerSave(
@@ -164,7 +175,7 @@ class _MenuState extends State<Menu> {
                         ),
                       ),
                       Text(
-                        '$_textarus mA',
+                        '$settime mA',
                         style: GoogleFonts.poppins(
                           fontSize: 15,
                           fontWeight: FontWeight.w600,
@@ -371,14 +382,38 @@ class _MenuState extends State<Menu> {
           onPressed: () async {
             await showDialog(
                 context: context,
+                barrierDismissible: false,
                 builder: (context) => AlertDialog(
                       title: Text("Set Timer (in Minutes)"),
-                      content: Container(
-                        child: TextField(
-                          keyboardType: TextInputType.number,
+                      content: SingleChildScrollView(
+                        child: ListBody(
+                          children: [
+                            TextField(
+                              keyboardType: TextInputType.number,
+                              controller: hourCotroller,
+                            ),
+                          ],
                         ),
                       ),
                       actions: <Widget>[
+                        TextButton(
+                          child: const Text('SET'),
+                          onPressed: () async {
+                            await referencesData
+                                .child('settime')
+                                .set(hourCotroller.text)
+                                .then(
+                                  (value) => ScaffoldMessenger.of(context)
+                                      .showSnackBar(
+                                    SnackBar(
+                                      content: Text('Timer berhasil di set'),
+                                    ),
+                                  ),
+                                );
+                            // ignore: use_build_context_synchronously
+                            Navigator.of(context).pop();
+                          },
+                        ),
                         TextButton(
                           child: const Text('BATAL'),
                           onPressed: () {
@@ -389,7 +424,7 @@ class _MenuState extends State<Menu> {
                     ));
           },
           tooltip: 'Popup Duration Picker',
-          backgroundColor: Colors.grey,
+          backgroundColor: Colors.green,
           child: const Icon(Icons.timer),
         ),
       ),
