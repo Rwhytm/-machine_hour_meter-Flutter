@@ -175,7 +175,7 @@ class _MenuState extends State<Menu> {
                         ),
                       ),
                       Text(
-                        '$settime mA',
+                        '$arusL mA',
                         style: GoogleFonts.poppins(
                           fontSize: 15,
                           fontWeight: FontWeight.w600,
