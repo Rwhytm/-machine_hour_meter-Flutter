@@ -369,19 +369,27 @@ class _MenuState extends State<Menu> {
       floatingActionButton: Builder(
         builder: (BuildContext context) => FloatingActionButton(
           onPressed: () async {
-            final resultingDuration = await showDurationPicker(
-              context: context,
-              initialTime: const Duration(seconds: 0),
-              baseUnit: BaseUnit.minute,
-            );
-            if (!mounted) return;
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text('Chose duration: $resultingDuration'),
-              ),
-            );
+            await showDialog(
+                context: context,
+                builder: (context) => AlertDialog(
+                      title: Text("Set Timer (in Minutes)"),
+                      content: Container(
+                        child: TextField(
+                          keyboardType: TextInputType.number,
+                        ),
+                      ),
+                      actions: <Widget>[
+                        TextButton(
+                          child: const Text('BATAL'),
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                        ),
+                      ],
+                    ));
           },
           tooltip: 'Popup Duration Picker',
+          backgroundColor: Colors.grey,
           child: const Icon(Icons.timer),
         ),
       ),
